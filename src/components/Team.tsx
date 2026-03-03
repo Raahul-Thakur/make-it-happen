@@ -54,7 +54,6 @@ export default function Team() {
                 </p>
                 <h3 className="mt-3 text-2xl font-bold text-[#111114]">{member.name}</h3>
                 <p className="mt-2 text-lg font-medium text-slate-600">{member.role}</p>
-                <p className="mt-4 text-sm uppercase tracking-[0.24em] text-slate-400">Fast ideas. Fewer layers.</p>
               </div>
             </div>
           ))}

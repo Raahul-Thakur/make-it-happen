@@ -22,7 +22,6 @@ export default function Hero() {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em]">
-              <span className="rounded-full bg-white px-4 py-2 text-[#111114]">Gen Z native</span>
               <span className="rounded-full border border-white/15 px-4 py-2 text-white/72">Estd 2024</span>
             </div>
           </div>
@@ -93,7 +92,7 @@ export default function Hero() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rotate-[2deg] rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+              <div className="rotate-[2deg] rounded-[1.75rem] bg-[#ffd166] p-5 text-[#111114]">
                 <p className="text-xs uppercase tracking-[0.24em] text-[#ffd166]">What hits</p>
                 <p className="mt-4 text-2xl font-bold">Culture-aware creative with a hard CTA.</p>
               </div>
