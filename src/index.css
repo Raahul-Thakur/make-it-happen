@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --paper: #fff8ef;
+    --ink: #111114;
+    --muted: #5f5950;
+    --brand: #ff5f1f;
+    --brand-deep: #7a1f00;
+    --accent: #ffd166;
+    --hot-pink: #ff3d7f;
+    --panel: rgba(255, 255, 255, 0.76);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255, 95, 31, 0.08), transparent 26%),
+      radial-gradient(circle at 80% 10%, rgba(255, 61, 127, 0.08), transparent 28%),
+      linear-gradient(180deg, #fff8ef 0%, #fff2e5 40%, #ffffff 100%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.05em;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand) transparent;
+  }
+
+  ::selection {
+    background: rgba(255, 95, 31, 0.2);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image:
+      linear-gradient(rgba(17, 17, 20, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17, 17, 20, 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mix-blend-mode: multiply;
+  }
+}
