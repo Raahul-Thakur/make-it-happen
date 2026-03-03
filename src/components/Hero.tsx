@@ -92,7 +92,7 @@ export default function Hero() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rotate-[2deg] rounded-[1.75rem] bg-[#ffd166] p-5 text-[#111114]">
+              <div className="rotate-[2deg] rounded-[1.75rem] bg-[#E97451] p-5 text-[#111114]">
                 <p className="text-xs uppercase tracking-[0.24em] text-[#ffd166]">What hits</p>
                 <p className="mt-4 text-2xl font-bold">Culture-aware creative with a hard CTA.</p>
               </div>
