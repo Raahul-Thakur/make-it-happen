@@ -34,7 +34,6 @@ export default function Results() {
         <div className="overflow-hidden rounded-[2.4rem] bg-[#111017] text-white">
           <div className="grid gap-12 p-8 md:p-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <p className="eyebrow text-[#eecb82]">Receipts</p>
               <h2 className="display-title mt-4 text-5xl md:text-7xl">
                 Attention is the product. We help you own more of it.
               </h2>

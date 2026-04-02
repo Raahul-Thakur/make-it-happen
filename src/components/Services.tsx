@@ -37,51 +37,98 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="relative py-20 md:py-28">
       <div className="section-shell">
-        <div className="mb-14 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="eyebrow text-[#b65128]">What We Do</p>
             <h2 className="display-title mt-4 max-w-4xl text-5xl text-[#111114] md:text-7xl">
               We build the look, the hook, and the push behind it.
             </h2>
           </div>
-          <p className="max-w-xl text-lg leading-8 text-slate-600 md:text-xl">
+          <p className="max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
             Each service is designed to feel less like outsourced marketing and more like an in-house
             creative team with taste, speed, and range.
           </p>
         </div>
 
-        <div className="grid gap-0 border-t border-black/10">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="group hover-rise grid gap-6 border-b border-black/10 py-8 md:grid-cols-[7rem_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10"
-            >
-              <div className={`h-20 w-20 rounded-[1.65rem] bg-gradient-to-br ${service.gradient} p-[1px]`}>
-                <div className="flex h-full w-full items-center justify-center rounded-[1.6rem] bg-[#111114] text-white">
-                  <service.icon className="h-9 w-9" />
-                </div>
-              </div>
+        <div className="grid gap-6">
+          {services.map((service, index) => {
+            const accent = index % 2 === 0;
 
-              <div>
-                <div className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[#b65128]">
-                  0{index + 1}
-                </div>
-                <div className="grid gap-4 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)] lg:items-start">
-                  <div>
-                    <h3 className="text-3xl font-bold text-[#111114] md:text-5xl">{service.title}</h3>
-                    <p className="mt-3 text-lg font-semibold text-slate-800">{service.description}</p>
+            return (
+              <article
+                key={service.title}
+                className={`group relative overflow-hidden rounded-[2.2rem] border shadow-[0_22px_60px_rgba(17,17,20,0.08)] transition-all duration-300 hover:-translate-y-1 ${
+                  accent
+                    ? 'border-black/10 bg-[linear-gradient(135deg,_rgba(255,255,255,0.86),_rgba(244,236,227,0.96))]'
+                    : 'border-[#111114]/10 bg-[#111017] text-white'
+                }`}
+              >
+                <div
+                  className={`absolute inset-0 ${
+                    accent
+                      ? 'bg-[radial-gradient(circle_at_top_right,_rgba(255,106,31,0.14),_transparent_24%)]'
+                      : 'bg-[radial-gradient(circle_at_top_left,_rgba(255,106,31,0.22),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(238,203,130,0.12),_transparent_22%)]'
+                  }`}
+                />
+
+                <div
+                  className={`relative grid gap-8 p-6 md:p-8 lg:grid-cols-[auto_minmax(0,0.85fr)_minmax(0,1fr)] lg:items-end ${
+                    accent ? '' : 'lg:grid-cols-[auto_minmax(0,0.78fr)_minmax(0,1.08fr)]'
+                  }`}
+                >
+                  <div className={`h-20 w-20 rounded-[1.8rem] bg-gradient-to-br ${service.gradient} p-[1px]`}>
+                    <div
+                      className={`flex h-full w-full items-center justify-center rounded-[1.75rem] ${
+                        accent ? 'bg-[#111114] text-white' : 'bg-white text-[#111114]'
+                      }`}
+                    >
+                      <service.icon className="h-9 w-9" />
+                    </div>
                   </div>
-                  <p className="max-w-2xl leading-8 text-slate-600 md:pt-2">{service.details}</p>
-                </div>
-              </div>
 
-              <div className="w-fit self-start rounded-full border border-black/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#111114] transition-colors duration-300 group-hover:border-[#ff6a1f] group-hover:bg-[#ff6a1f] group-hover:text-white">
-                Built to hit
-              </div>
-            </div>
-          ))}
+                  <div>
+                    <p
+                      className={`text-xs font-semibold uppercase tracking-[0.3em] ${
+                        accent ? 'text-[#b65128]' : 'text-[#eecb82]'
+                      }`}
+                    >
+                      0{index + 1}
+                    </p>
+                    <h3 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">{service.title}</h3>
+                    <p
+                      className={`mt-4 max-w-[18ch] text-xl font-semibold leading-8 ${
+                        accent ? 'text-slate-800' : 'text-white/88'
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+                    <p
+                      className={`max-w-2xl text-base leading-8 md:text-lg ${
+                        accent ? 'text-slate-600' : 'text-white/68'
+                      }`}
+                    >
+                      {service.details}
+                    </p>
+
+                    <div
+                      className={`w-fit rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300 ${
+                        accent
+                          ? 'border border-black/10 text-[#111114] group-hover:bg-[#ff6a1f] group-hover:text-white'
+                          : 'bg-white text-[#111114] group-hover:bg-[#eecb82]'
+                      }`}
+                    >
+                      Built to hit
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

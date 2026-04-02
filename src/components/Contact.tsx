@@ -8,7 +8,6 @@ export default function Contact() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(238,203,130,0.24),_transparent_18%),radial-gradient(circle_at_16%_24%,_rgba(255,255,255,0.1),_transparent_22%)]" />
           <div className="relative grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div>
-              <p className="eyebrow text-white/68">Start Here</p>
               <h2 className="display-title mt-4 text-5xl md:text-7xl">
                 If your brand needs a bigger pulse, call us before your competitor does.
               </h2>
