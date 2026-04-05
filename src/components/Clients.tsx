@@ -1,113 +1,205 @@
-import azLogo from '../../content/client_logos/AZ.jpg';
-import cafeSouthSoulLogo from '../../content/client_logos/cafe south soul.jpg';
-import cravishLogo from '../../content/client_logos/cravish.jpg';
-import kube9Logo from '../../content/client_logos/kube 9 .jpg';
-import locksAndBeyondLogo from '../../content/client_logos/locks and beyond.jpg';
-import lucknowiFlavourLogo from '../../content/client_logos/lucknowi flavour.jpg';
-import mariaPlazaLogo from '../../content/client_logos/maria plaza.jpg';
+import { useRef, useState, type PointerEvent } from 'react';
 import ministryOfShawarmaLogo from '../../content/client_logos/ministry of shawarma .jpg';
+import wecityMotorsLogo from '../../content/client_logos/wecity.jpg';
+import bunmanIraniCafeLogo from '../../content/client_logos/cafe south soul.jpg';
 import waffleBingeLogo from '../../content/client_logos/waffle binge.jpg';
-import wecityLogo from '../../content/client_logos/wecity.jpg';
-import whiteFrameLogo from '../../content/client_logos/white frame.jpg';
+import cravishLogo from '../../content/client_logos/cravish.jpg';
+import whiteFrameInteriorsLogo from '../../content/client_logos/white frame.jpg';
 
-const clients = [
-  { name: 'AZ', logo: azLogo },
-  { name: 'Cafe South Soul', logo: cafeSouthSoulLogo },
-  { name: 'Cravish', logo: cravishLogo },
-  { name: 'Kube 9', logo: kube9Logo },
-  { name: 'Locks And Beyond', logo: locksAndBeyondLogo },
-  { name: 'Lucknowi Flavour', logo: lucknowiFlavourLogo },
-  { name: 'Maria Plaza', logo: mariaPlazaLogo },
-  { name: 'Ministry Of Shawarma', logo: ministryOfShawarmaLogo },
+type Client = {
+  name: string;
+  logo: string;
+};
+
+type DragPosition = {
+  x: number;
+  y: number;
+};
+
+type DragOffsets = {
+  x: number;
+  y: number;
+};
+
+type DraggableClientCardProps = {
+  client: Client;
+  index: number;
+  position: DragPosition;
+  isDragging: boolean;
+  zIndex: number;
+  onDragStart: (index: number) => void;
+  onPositionChange: (index: number, position: DragPosition) => void;
+  onDragEnd: () => void;
+};
+
+const clients: Client[] = [
+  { name: 'Ministry of Shawarma', logo: ministryOfShawarmaLogo },
+  { name: 'Wecity Motors', logo: wecityMotorsLogo },
+  { name: 'Bunman Irani Cafe', logo: bunmanIraniCafeLogo },
   { name: 'Waffle Binge', logo: waffleBingeLogo },
-  { name: 'Wecity', logo: wecityLogo },
-  { name: 'White Frame', logo: whiteFrameLogo },
+  { name: 'Cravish', logo: cravishLogo },
+  { name: 'White Frame Interiors', logo: whiteFrameInteriorsLogo },
 ];
 
-const featuredClients = new Set(['AZ', 'Cafe South Soul', 'Ministry Of Shawarma']);
+const initialPositions: DragPosition[] = [
+  { x: -10, y: 0 },
+  { x: 8, y: 16 },
+  { x: -6, y: -8 },
+  { x: 10, y: 6 },
+  { x: -12, y: 12 },
+  { x: 6, y: -10 },
+];
 
-export default function Clients() {
+const baseRotations = [-4, 3, -2, 4, -3, 2];
+
+function DraggableClientCard({
+  client,
+  index,
+  position,
+  isDragging,
+  zIndex,
+  onDragStart,
+  onPositionChange,
+  onDragEnd,
+}: DraggableClientCardProps) {
+  const offsetsRef = useRef<DragOffsets>({ x: 0, y: 0 });
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+
+    offsetsRef.current = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
+
+    card.setPointerCapture(event.pointerId);
+    onDragStart(index);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) {
+      return;
+    }
+
+    const parent = event.currentTarget.parentElement;
+    if (!parent) {
+      return;
+    }
+
+    const parentRect = parent.getBoundingClientRect();
+    const cardRect = event.currentTarget.getBoundingClientRect();
+
+    const nextX = event.clientX - parentRect.left - offsetsRef.current.x;
+    const nextY = event.clientY - parentRect.top - offsetsRef.current.y;
+
+    const maxX = parentRect.width - cardRect.width;
+    const maxY = parentRect.height - cardRect.height;
+
+    onPositionChange(index, {
+      x: Math.min(Math.max(nextX, -24), Math.max(maxX, 24)),
+      y: Math.min(Math.max(nextY, -24), Math.max(maxY, 24)),
+    });
+  };
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    onDragEnd();
+  };
+
+  const rotation = isDragging ? 0 : baseRotations[index % baseRotations.length];
+
   return (
-    <section className="py-20 md:py-28">
-      <div className="section-shell">
-        <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="eyebrow text-[#b65128]">Brands In The Mix</p>
-            <h2 className="display-title mt-4 max-w-5xl text-5xl text-[#111114] md:text-7xl">
-              Names we have helped look sharper online.
-            </h2>
+    <div className="relative h-[270px] w-full sm:h-[290px]">
+      <div
+        className={`group absolute inset-3 cursor-grab select-none rounded-2xl border border-black/10 bg-white/88 p-6 shadow-[0_18px_50px_rgba(17,17,20,0.08)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 ease-out hover:scale-[1.015] hover:border-[#ff6a1f]/25 hover:shadow-[0_26px_60px_rgba(255,106,31,0.16)] active:cursor-grabbing ${
+          isDragging ? 'shadow-[0_34px_80px_rgba(17,17,20,0.18)]' : ''
+        }`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        style={{
+          transform: `translate3d(${position.x}px, ${position.y}px, 0) rotate(${rotation}deg) scale(${isDragging ? 1.03 : 1})`,
+          zIndex,
+          touchAction: 'none',
+          willChange: 'transform',
+        }}
+      >
+        <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+        <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,_rgba(255,106,31,0.08),_transparent_46%)]" />
+
+        <div className="relative flex h-full flex-col items-center justify-center text-center">
+          <div className="flex h-28 w-full items-center justify-center rounded-xl bg-[linear-gradient(180deg,_rgba(255,250,245,0.96),_rgba(250,243,236,0.96))] p-5 sm:h-32">
+            <img
+              src={client.logo}
+              alt={`${client.name} logo`}
+              className="max-h-full w-auto max-w-full object-contain"
+              draggable={false}
+              loading="lazy"
+            />
           </div>
-          <p className="max-w-xl text-lg leading-8 text-slate-600 md:text-xl">
-            Different categories, same brief: stop looking forgettable and start feeling current.
+
+          <p className="mt-5 max-w-[18ch] text-lg font-semibold leading-tight text-[#111114] sm:text-xl">
+            {client.name}
           </p>
         </div>
+      </div>
+    </div>
+  );
+}
 
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-[linear-gradient(180deg,_rgba(255,255,255,0.74),_rgba(255,249,241,0.92))] p-5 shadow-[0_24px_70px_rgba(17,17,20,0.08)] backdrop-blur-sm md:p-7">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,106,31,0.08),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(238,203,130,0.18),_transparent_22%)]" />
+export default function Clients() {
+  const [positions, setPositions] = useState<DragPosition[]>(initialPositions);
+  const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
+  const [zIndices, setZIndices] = useState<number[]>(clients.map((_, index) => index + 1));
 
-          <div className="relative mb-8 flex flex-col gap-5 border-b border-black/10 pb-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="eyebrow text-[#b65128]">Client Wall</p>
-              <p className="mt-3 max-w-2xl text-lg font-medium leading-8 text-slate-700">
-                A growing mix of food, retail, hospitality, and local brands we have helped show up
-                better online.
-              </p>
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
-              11 current brands
-            </p>
-          </div>
+  const handleDragStart = (index: number) => {
+    setDraggingIndex(index);
+    setZIndices((current) => {
+      const highestZIndex = Math.max(...current);
+      return current.map((value, currentIndex) => (currentIndex === index ? highestZIndex + 1 : value));
+    });
+  };
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {clients.map((client, index) => {
-              const featured = featuredClients.has(client.name);
+  const handlePositionChange = (index: number, nextPosition: DragPosition) => {
+    setPositions((current) =>
+      current.map((position, currentIndex) => (currentIndex === index ? nextPosition : position))
+    );
+  };
 
-              return (
-                <article
-                  key={client.name}
-                  className={`group relative overflow-hidden rounded-[1.9rem] border border-black/10 bg-white/80 p-5 shadow-[0_14px_32px_rgba(17,17,20,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff6a1f]/40 hover:shadow-[0_24px_48px_rgba(17,17,20,0.12)] ${
-                    featured ? 'sm:col-span-2' : ''
-                  }`}
-                >
-                  <div className="absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,_rgba(255,106,31,0.08),_transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+  const handleDragEnd = () => {
+    setDraggingIndex(null);
+  };
 
-                  <div className="relative flex h-full flex-col justify-between">
-                    <div className="flex items-start justify-between gap-3">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.26em] text-slate-300">
-                        {(index + 1).toString().padStart(2, '0')}
-                      </span>
-                      <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500">
-                        {featured ? 'Featured' : 'Client'}
-                      </span>
-                    </div>
+  return (
+    <section className="relative py-20 md:py-28">
+      <div className="section-shell">
+        <div className="mb-12 text-center md:mb-16">
+          <p className="eyebrow text-[#b65128]">Trusted By</p>
+          <h2 className="display-title mt-4 text-5xl text-[#111114] md:text-7xl">Our Clients</h2>
+        </div>
 
-                    <div
-                      className={`mt-6 flex items-center rounded-[1.5rem] border border-black/6 bg-[linear-gradient(180deg,_rgba(252,249,245,0.95),_rgba(244,236,227,0.92))] px-5 transition-transform duration-300 group-hover:scale-[1.01] ${
-                        featured ? 'min-h-[9rem] justify-center' : 'min-h-[7.5rem] justify-start'
-                      }`}
-                    >
-                      <img
-                        src={client.logo}
-                        alt={`${client.name} logo`}
-                        className={`w-auto max-w-full object-contain ${
-                          featured ? 'max-h-16 md:max-h-20' : 'max-h-12'
-                        }`}
-                        loading="lazy"
-                      />
-                    </div>
+        <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[linear-gradient(180deg,_rgba(255,255,255,0.78),_rgba(249,242,234,0.94))] p-5 shadow-[0_28px_80px_rgba(17,17,20,0.08)] md:p-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,106,31,0.1),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(238,203,130,0.18),_transparent_24%)]" />
 
-                    <div className="mt-5 flex items-end justify-between gap-4">
-                      <div>
-                        <p className="text-base font-semibold leading-6 text-[#111114] md:text-lg">
-                          {client.name}
-                        </p>
-                      </div>
-                      <div className="h-2.5 w-2.5 rounded-full bg-[#ff6a1f] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+          <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {clients.map((client, index) => (
+              <DraggableClientCard
+                key={client.name}
+                client={client}
+                index={index}
+                position={positions[index]}
+                isDragging={draggingIndex === index}
+                zIndex={zIndices[index]}
+                onDragStart={handleDragStart}
+                onPositionChange={handlePositionChange}
+                onDragEnd={handleDragEnd}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -114,16 +114,6 @@ export default function Services() {
                     >
                       {service.details}
                     </p>
-
-                    <div
-                      className={`w-fit rounded-full px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] transition-colors duration-300 ${
-                        accent
-                          ? 'border border-black/10 text-[#111114] group-hover:bg-[#ff6a1f] group-hover:text-white'
-                          : 'bg-white text-[#111114] group-hover:bg-[#eecb82]'
-                      }`}
-                    >
-                      Built to hit
-                    </div>
                   </div>
                 </div>
               </article>

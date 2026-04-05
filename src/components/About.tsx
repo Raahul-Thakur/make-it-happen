@@ -25,7 +25,7 @@ export default function About() {
             </p>
 
             <div className="mt-12 grid gap-4 md:grid-cols-3 md:gap-5">
-              <article className="rounded-[1.9rem] border border-black/10 bg-[#111114] p-5 text-white shadow-[0_18px_40px_rgba(17,17,20,0.1)] md:min-h-[16.5rem] md:p-6">
+              <article className="rounded-[1.9rem] border border-black/10 bg-[#b65128] p-5 text-white shadow-[0_18px_40px_rgba(17,17,20,0.1)] md:min-h-[16.5rem] md:p-6">
                 <div className="flex h-full flex-col">
                   <p className="eyebrow text-[#eecb82]">Creative</p>
                   <p className="mt-6 max-w-[12ch] text-[1.65rem] font-bold leading-tight sm:text-[1.8rem] md:text-[1.9rem]">
