@@ -9,7 +9,6 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f8efe2] text-[#111114]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.78),_transparent_30%),linear-gradient(180deg,_rgba(250,242,233,0.96)_0%,_rgba(243,232,219,0.96)_100%)]" />
-      <div className="absolute left-[-6%] top-[12%] h-64 w-64 rounded-[38%_62%_55%_45%/44%_36%_64%_56%] bg-[#ff6a1f]/18 blur-sm md:h-80 md:w-80" />
       <div className="absolute right-[8%] top-[16%] h-40 w-40 rounded-[56%_44%_38%_62%/41%_56%_44%_59%] bg-[#111114]/7 md:h-52 md:w-52" />
       <div className="absolute bottom-[10%] right-[-4%] h-72 w-72 rounded-[58%_42%_61%_39%/36%_60%_40%_64%] bg-[#eecb82]/55 blur-sm md:h-96 md:w-96" />
       <div className="absolute bottom-[22%] left-[24%] h-28 w-28 rounded-[58%_42%_61%_39%/36%_60%_40%_64%] bg-white/45 blur-sm md:h-36 md:w-36" />
