@@ -51,9 +51,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28">
+    <section id="contact" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
-        <div className="relative overflow-hidden rounded-[2.4rem] bg-[linear-gradient(135deg,_#ff6a1f_0%,_#6b2207_56%,_#111017_100%)] p-8 text-white md:p-12">
+        <div data-nav-theme="dark" className="relative overflow-hidden rounded-[2.4rem] bg-[linear-gradient(135deg,_#ff6a1f_0%,_#6b2207_56%,_#111017_100%)] p-8 text-white md:p-12">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(238,203,130,0.24),_transparent_18%),radial-gradient(circle_at_16%_24%,_rgba(255,255,255,0.1),_transparent_22%)]" />
 
           <div className="relative grid gap-10 lg:grid-cols-2 lg:items-start">
@@ -64,11 +64,6 @@ export default function Contact() {
                 <h2 className="display-title mt-4 text-5xl md:text-7xl">
                   If your brand needs a bigger pulse, call us before your competitor does.
                 </h2>
-
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-white/82 md:text-xl">
-                  Bring the brief, the chaos, the launch deadline. We will shape the angle, the assets,
-                  and the rollout.
-                </p>
               </div>
 
               {/* EMAIL CARD */}

@@ -72,7 +72,7 @@ export default function Testimonials() {
   const current = testimonials[activeIndex];
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section id="testimonials" className="relative scroll-mt-24 overflow-hidden py-20 md:py-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,106,31,0.12),_transparent_26%),radial-gradient(circle_at_78%_20%,_rgba(238,203,130,0.18),_transparent_22%),linear-gradient(180deg,_rgba(255,250,246,0.98),_rgba(247,239,230,0.95))]" />
 
       <div className="section-shell relative">

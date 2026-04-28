@@ -52,7 +52,7 @@ function LogoRail({ items, reverse = false }: LogoRailProps) {
 
 export default function Clients() {
   return (
-    <section className="relative py-20 md:py-28">
+    <section id="clients" className="relative scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
         <div className="overflow-hidden rounded-[2.5rem] border border-black/10 bg-[linear-gradient(180deg,_rgba(255,255,255,0.72),_rgba(249,242,234,0.95))] px-5 py-10 shadow-[0_30px_80px_rgba(17,17,20,0.08)] md:px-8 md:py-14">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,106,31,0.1),_transparent_22%),radial-gradient(circle_at_bottom_right,_rgba(238,203,130,0.18),_transparent_26%)]" />

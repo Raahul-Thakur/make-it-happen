@@ -13,7 +13,7 @@ const team = [
 
 export default function Team() {
   return (
-    <section className="py-20 md:py-24">
+    <section id="team" className="scroll-mt-24 py-20 md:py-24">
       <div className="section-shell">
         <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

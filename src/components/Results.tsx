@@ -29,9 +29,9 @@ const stats = [
 
 export default function Results() {
   return (
-    <section className="py-20 md:py-28">
+    <section id="results" className="scroll-mt-24 py-20 md:py-28">
       <div className="section-shell">
-        <div className="overflow-hidden rounded-[2.4rem] bg-[#111017] text-white">
+        <div data-nav-theme="dark" className="overflow-hidden rounded-[2.4rem] bg-[#111017] text-white">
           <div className="grid gap-12 p-8 md:p-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <h2 className="display-title mt-4 text-5xl md:text-7xl">

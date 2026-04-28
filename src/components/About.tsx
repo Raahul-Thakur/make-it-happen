@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="relative overflow-hidden bg-[#0e0d12] py-20 text-white md:py-28">
+    <section id="about" data-nav-theme="dark" className="relative scroll-mt-24 overflow-hidden bg-[#0e0d12] py-20 text-white md:py-28">
       <div className="absolute inset-0 mesh-bg opacity-90" />
       <div className="absolute inset-0 grid-lines opacity-[0.08]" />
       <div className="absolute -left-16 top-24 h-56 w-56 rounded-full bg-[#ff6a1f]/20 blur-3xl md:h-72 md:w-72" />
