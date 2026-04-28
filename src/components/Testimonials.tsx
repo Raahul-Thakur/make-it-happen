@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import ministryOfShawarmaLogo from '../../content/client_logos/ministry of shawarma .jpg';
 import wecityMotorsLogo from '../../content/client_logos/wecity.jpg';
-import bunmanIraniCafeLogo from '../../content/client_logos/cafe south soul.jpg';
+import bunmanIraniCafeLogo from '../../content/client_logos/bunman.jpg';
 import cravishLogo from '../../content/client_logos/cravish.jpg';
 
 type Testimonial = {
@@ -17,25 +17,25 @@ const testimonials: Testimonial[] = [
     company: 'WeCity Motors',
     photo: wecityMotorsLogo,
     review:
-      "Make It Happen is one of the most well-suited digital marketing consultancies for any business. Huge shoutout to their team for consistently supporting and amplifying small-scale businesses through their expertise and exceptional cinematography.\n\nThey've been part of our journey since day one, helping us showcase our work better with each step. We truly appreciate the team for always making it happen!",
+      "Make It Happen has been an incredible partner in our growth journey. Their digital marketing expertise, creative storytelling, and outstanding cinematography have consistently elevated how we showcase our work. From day one, their team has supported us wholeheartedly, helping our brand connect better with customers and grow stronger.",
   },
   {
     company: 'Cravish',
     photo: cravishLogo,
     review:
-      "At Cravish, we truly value working with teams that understand a brand's vision, and Make It Happen has been exactly that. From creative concepts and shoot planning to editing and timely posting, their execution has been seamless.\n\nThe team is professional, cooperative, and always brings fresh ideas. It's been a pleasure collaborating, and we look forward to creating more impactful content together.",
+      "Working with Make It Happen has been a seamless and rewarding experience. Their team understands brand vision deeply, executes creative campaigns flawlessly, and always delivers fresh ideas. From planning to posting, their professionalism and dedication have made every collaboration impactful, helping us strengthen our brand presence significantly.",
   },
   {
     company: 'Ministry of Shawarma',
     photo: ministryOfShawarmaLogo,
     review:
-      "Working with Make It Happen has been a game-changer for us. They understood our brand from the start and brought it to life through engaging content and consistent digital presence.\n\nWe've seen a noticeable boost in customer engagement and brand recall. Their team truly cares about your growth, and that reflects in everything they do.",
+      "Make It Happen transformed our digital presence by truly understanding our brand and audience. Their engaging content, strategic marketing, and consistent execution have boosted customer engagement and strengthened brand recall. What stands out most is their genuine commitment to our growth, success, and long-term brand building.",
   },
   {
     company: 'Bunman Irani Cafe',
     photo: bunmanIraniCafeLogo,
     review:
-      "Make It Happen didn't just market our cafe - they told our story beautifully. From capturing the essence of our space to creating content that connects with people, they've helped us build a stronger bond with our audience.\n\nTheir creativity, dedication, and positive energy make them a joy to work with. We've grown so much with them by our side!",
+      "Make It Happen beautifully captured the essence of our café and turned our story into meaningful content. Their creativity, dedication, and thoughtful marketing have helped us connect deeply with our audience and grow our brand. Their positive energy and passion make them exceptional partners to work with.",
   },
 ];
 

@@ -73,6 +73,106 @@
     backdrop-filter: blur(18px);
   }
 
+  .note-board {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top left, rgba(255, 248, 238, 0.92), transparent 28%),
+      linear-gradient(135deg, rgba(255, 251, 245, 0.96), rgba(238, 222, 199, 0.92));
+  }
+
+  .note-board::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image:
+      linear-gradient(rgba(93, 61, 34, 0.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(93, 61, 34, 0.2) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .sticky-note {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.9rem;
+    padding: 1.5rem;
+    box-shadow:
+      0 1.4rem 2.5rem rgba(70, 43, 20, 0.16),
+      inset 0 -0.5rem 1rem rgba(255, 255, 255, 0.1);
+  }
+
+  .sticky-note::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.22), transparent 42%);
+  }
+
+  .sticky-note__tape {
+    position: absolute;
+    top: 0.95rem;
+    z-index: 2;
+    height: 1rem;
+    width: 4.6rem;
+    border-radius: 999px;
+    background: rgba(255, 248, 237, 0.5);
+    box-shadow: 0 0.25rem 0.65rem rgba(54, 32, 18, 0.08);
+    backdrop-filter: blur(2px);
+  }
+
+  .sticky-note__tape--left {
+    left: 1.5rem;
+    transform: rotate(-12deg);
+  }
+
+  .sticky-note__tape--right {
+    right: 1.5rem;
+    transform: rotate(10deg);
+  }
+
+  .logo-rail {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2rem;
+    padding-block: 0.35rem;
+  }
+
+  .logo-rail::before,
+  .logo-rail::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 6rem;
+    pointer-events: none;
+  }
+
+  .logo-rail::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(248, 241, 232, 0.98), rgba(248, 241, 232, 0));
+  }
+
+  .logo-rail::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(248, 241, 232, 0.98), rgba(248, 241, 232, 0));
+  }
+
+  .logo-rail__track {
+    display: flex;
+    width: max-content;
+    gap: 1.25rem;
+    animation: logoRail 28s linear infinite;
+  }
+
+  .logo-rail__track--reverse {
+    animation-direction: reverse;
+  }
+
   .noise-overlay::before {
     content: '';
     position: absolute;
@@ -159,5 +259,15 @@
 
   50% {
     transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes logoRail {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-33.333%, 0, 0);
   }
 }

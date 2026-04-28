@@ -21,7 +21,7 @@ const stats = [
   },
   {
     icon: TrendingUp,
-    value: '4.8x',
+    value: '8x',
     label: 'Average ROAS',
     subtext: 'Ad Spend Efficiency',
   },

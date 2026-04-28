@@ -8,20 +8,46 @@ export default function Contact() {
     subject: '',
     message: '',
   });
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>(
+    'idle'
+  );
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitStatus('sending');
 
-    const body = [
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      '',
-      formData.message,
-    ].join('\n');
+    const payload = new FormData();
+    payload.append('name', formData.name);
+    payload.append('email', formData.email);
+    payload.append('subject', formData.subject);
+    payload.append('message', formData.message);
+    payload.append('_subject', `Make It Happen contact: ${formData.subject}`);
+    payload.append('_template', 'table');
+    payload.append('_captcha', 'false');
 
-    window.location.href = `mailto:makeithappen2k24@gmail.com?subject=${encodeURIComponent(
-      formData.subject
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/makeithappen2k24@gmail.com', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: payload,
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to submit contact form');
+      }
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setSubmitStatus('success');
+    } catch {
+      setSubmitStatus('error');
+    }
   };
 
   return (
@@ -126,11 +152,24 @@ export default function Contact() {
 
                 <button
                   type="submit"
+                  disabled={submitStatus === 'sending'}
                   className="group mt-5 inline-flex w-full items-center justify-center gap-3 rounded-full bg-white px-6 py-3.5 font-semibold text-[#111114] transition-transform duration-300 hover:scale-[1.02]"
                 >
-                  Send Message
+                  {submitStatus === 'sending' ? 'Sending...' : 'Send Message'}
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </button>
+
+                {submitStatus === 'success' && (
+                  <p className="mt-4 text-sm font-semibold text-white/85">
+                    Message sent. We will get back to you shortly.
+                  </p>
+                )}
+
+                {submitStatus === 'error' && (
+                  <p className="mt-4 text-sm font-semibold text-white/85">
+                    Something went wrong. Please email us directly at makeithappen2k24@gmail.com.
+                  </p>
+                )}
               </form>
 
               {/* PHONE CARD */}

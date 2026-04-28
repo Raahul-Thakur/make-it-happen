@@ -123,24 +123,6 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-
-              <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-start lg:gap-8">
-                <div className="grid gap-3 rounded-[1.6rem] border border-black/10 bg-white/55 p-4 shadow-[0_18px_40px_rgba(17,17,20,0.08)] backdrop-blur-sm sm:grid-cols-3 lg:grid-cols-3 lg:p-5">
-                  {[
-                    ['5M+', 'Views banked'],
-                    ['24/7', 'Campaign mode'],
-                    ['Fast', 'Speed'],
-                  ].map(([value, label]) => (
-                    <div
-                      key={label}
-                      className="border-l border-black/10 pl-4 first:border-l-0 first:pl-0 sm:min-w-0"
-                    >
-                      <p className="text-xs uppercase tracking-[0.24em] text-black/45">{label}</p>
-                      <p className="mt-1.5 text-[1.65rem] font-extrabold md:text-[2rem]">{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
