@@ -154,8 +154,8 @@ export default function Services() {
               </div>
             </div>
 
-            <aside className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white/62 p-4 shadow-[0_24px_60px_rgba(17,17,20,0.07)] backdrop-blur-md md:p-5 lg:min-h-[28rem]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,106,31,0.12),_transparent_34%),radial-gradient(circle_at_bottom_left,_rgba(238,203,130,0.24),_transparent_30%)]" />
+            <aside className="relative hidden overflow-hidden rounded-[2rem] border border-black/10 bg-white/62 p-4 shadow-[0_24px_60px_rgba(17,17,20,0.07)] backdrop-blur-md md:p-5 lg:block lg:min-h-[28rem]">
+              <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_top_right,_rgba(255,106,31,0.12),_transparent_34%),radial-gradient(circle_at_bottom_left,_rgba(238,203,130,0.24),_transparent_30%)] sm:block" />
               <div className="relative flex h-full flex-col">
                 <div className="mb-5 flex items-center justify-between gap-4 px-1">
                   <p className="eyebrow text-[#b65128]">All Services</p>
