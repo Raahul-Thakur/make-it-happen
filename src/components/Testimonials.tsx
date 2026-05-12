@@ -167,7 +167,7 @@ export default function Testimonials() {
                 </div>
               </div>
 
-              <div className="relative min-h-[17rem] overflow-hidden md:min-h-[16rem]">
+              <div className="relative min-h-[17rem] overflow-visible sm:min-h-[15rem] md:min-h-[16rem] lg:min-h-[15rem]">
                 <AnimatePresence custom={direction} mode="wait">
                   <motion.article
                     key={current.company}
@@ -190,7 +190,7 @@ export default function Testimonials() {
                       duration: 0.42,
                       ease: [0.22, 1, 0.36, 1] as const,
                     }}
-                    className="absolute inset-0"
+                    className="relative"
                   >
                     <div className="space-y-4 text-base leading-8 text-slate-700 md:text-lg md:leading-9">
                       {current.review.split('\n\n').map((paragraph) => (
