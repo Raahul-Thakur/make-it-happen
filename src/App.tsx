@@ -5,7 +5,6 @@ import Services from './components/Services';
 import Results from './components/Results';
 import Clients from './components/Clients';
 import Testimonials from './components/Testimonials';
-import Team from './components/Team';
 import Contact from './components/Contact';
 import FloatingToTopButton from './components/FloatingToTopButton';
 
@@ -20,7 +19,6 @@ function App() {
         <Results />
         <Clients />
         <Testimonials />
-        <Team />
         <Contact />
       </main>
       <FloatingToTopButton />
