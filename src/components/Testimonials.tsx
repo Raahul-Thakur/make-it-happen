@@ -81,10 +81,6 @@ export default function Testimonials() {
           <h2 className="display-title mt-4 max-w-4xl text-5xl text-[#111114] md:text-7xl">
             Trusted by brands that needed the work to feel real.
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
-            An animated testimonial section inspired by Aceternity&apos;s image-and-quote layout,
-            adapted here so each company logo becomes the featured visual.
-          </p>
         </div>
 
         <div
