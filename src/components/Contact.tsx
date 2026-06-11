@@ -1,6 +1,11 @@
 import { FormEvent, useState } from 'react';
 import { Mail, Phone, ArrowRight } from 'lucide-react';
 
+const contactEmailHref =
+  'mailto:makeithappen2k24@gmail.com?subject=Website%20email%20CTA%20enquiry&body=Source%3A%20Website%20email%20CTA%0A%0AHi%20Make%20It%20Happen%2C%0A%0A';
+const contactPhoneHref = 'tel:+919892635748';
+const formSourceTag = 'Website contact form';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -20,8 +25,9 @@ export default function Contact() {
     payload.append('name', formData.name);
     payload.append('email', formData.email);
     payload.append('subject', formData.subject);
-    payload.append('message', formData.message);
-    payload.append('_subject', `Make It Happen contact: ${formData.subject}`);
+    payload.append('message', `${formData.message}\n\nSource: ${formSourceTag}`);
+    payload.append('source', formSourceTag);
+    payload.append('_subject', `Make It Happen website form: ${formData.subject}`);
     payload.append('_template', 'table');
     payload.append('_captcha', 'false');
 
@@ -68,7 +74,7 @@ export default function Contact() {
 
               {/* EMAIL CARD */}
               <a
-                href="mailto:makeithappen2k24@gmail.com"
+                href={contactEmailHref}
                 className="hover-rise mt-10 block rounded-[1.75rem] border border-white/15 bg-white/10 p-6 backdrop-blur-sm transition-colors duration-300 hover:bg-white/15"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-3xl bg-white/15">
@@ -77,9 +83,13 @@ export default function Contact() {
                 <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/65">
                   Email
                 </p>
-                <p className="mt-2 break-all text-lg font-semibold underline">
-                  makeithappen2k24@gmail.com
+                <p className="mt-2 text-lg font-semibold">
+                  Start an email enquiry
                 </p>
+                <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#111114]">
+                  Open Email App
+                  <ArrowRight className="h-4 w-4" />
+                </span>
               </a>
             </div>
 
@@ -162,14 +172,14 @@ export default function Contact() {
 
                 {submitStatus === 'error' && (
                   <p className="mt-4 text-sm font-semibold text-white/85">
-                    Something went wrong. Please email us directly at makeithappen2k24@gmail.com.
+                    Something went wrong. Please use the email CTA or try again in a moment.
                   </p>
                 )}
               </form>
 
               {/* PHONE CARD */}
               <a
-                href="tel:+919892635748"
+                href={contactPhoneHref}
                 className="hover-rise rounded-[1.75rem] border border-white/15 bg-white/10 p-6 backdrop-blur-sm transition-colors duration-300 hover:bg-white/15"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-3xl bg-white/15">
@@ -179,8 +189,12 @@ export default function Contact() {
                   Phone
                 </p>
                 <p className="mt-2 text-lg font-semibold">
-                  +91 9892635748
+                  Speak with us directly
                 </p>
+                <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#111114]">
+                  Call Now
+                  <ArrowRight className="h-4 w-4" />
+                </span>
               </a>
             </div>
           </div>
