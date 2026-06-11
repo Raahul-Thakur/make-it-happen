@@ -5,6 +5,29 @@ const contactEmailHref =
   'mailto:makeithappen2k24@gmail.com?subject=Website%20email%20CTA%20enquiry&body=Source%3A%20Website%20email%20CTA%0A%0AHi%20Make%20It%20Happen%2C%0A%0A';
 const contactPhoneHref = 'tel:+919892635748';
 const formSourceTag = 'Website contact form';
+const allowedEmailDomains = new Set([
+  'gmail.com',
+  'googlemail.com',
+  'outlook.com',
+  'hotmail.com',
+  'live.com',
+  'msn.com',
+  'yahoo.com',
+  'ymail.com',
+  'rocketmail.com',
+  'icloud.com',
+  'me.com',
+  'mac.com',
+  'aol.com',
+  'proton.me',
+  'protonmail.com',
+]);
+
+const getEmailDomain = (email: string) => {
+  const parts = email.trim().toLowerCase().split('@');
+  return parts[parts.length - 1] ?? '';
+};
+const isAllowedEmail = (email: string) => allowedEmailDomains.has(getEmailDomain(email));
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,9 +39,18 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>(
     'idle'
   );
+  const [emailError, setEmailError] = useState('');
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!isAllowedEmail(formData.email)) {
+      setEmailError('Please use a valid Gmail, Outlook, Yahoo, Hotmail, iCloud, AOL, or Proton email address.');
+      setSubmitStatus('idle');
+      return;
+    }
+
+    setEmailError('');
     setSubmitStatus('sending');
 
     const payload = new FormData();
@@ -124,11 +156,22 @@ export default function Contact() {
                     placeholder="Email address"
                     value={formData.email}
                     onChange={(event) =>
-                      setFormData((current) => ({ ...current, email: event.target.value }))
+                      setFormData((current) => {
+                        setEmailError('');
+                        return { ...current, email: event.target.value };
+                      })
                     }
                     required
+                    aria-invalid={emailError ? 'true' : 'false'}
+                    aria-describedby={emailError ? 'email-error' : undefined}
                     className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-base text-white placeholder:text-white/55 outline-none transition-colors duration-300 focus:border-white/45"
                   />
+
+                  {emailError && (
+                    <p id="email-error" className="-mt-2 text-sm font-semibold text-white/85">
+                      {emailError}
+                    </p>
+                  )}
 
                   <input
                     type="text"
